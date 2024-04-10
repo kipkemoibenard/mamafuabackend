@@ -22,4 +22,8 @@ public class ClientService {
     public List<Client>getAllClients(){
         return clientDao.findAll();
     }
+
+    public Client loginClient(String email, String password) {
+        return clientDao.findByEmailAndPassword(email, password);
+    }
 }

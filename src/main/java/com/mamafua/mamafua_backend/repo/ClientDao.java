@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ClientDao  extends JpaRepository<Client, Integer> {
+    Client findByEmailAndPassword(String email, String password);
 }
