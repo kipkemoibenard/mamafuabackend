@@ -22,7 +22,7 @@ public class ClientController {
     @PostMapping("register")
     public String registerClient(@RequestBody Client client) {
         clientService.registerClient(client);
-        return "Client registered";
+        return null;
     }
 
     @GetMapping("/allClients")

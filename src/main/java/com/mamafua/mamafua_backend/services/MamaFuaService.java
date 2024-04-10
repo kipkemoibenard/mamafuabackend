@@ -15,7 +15,7 @@ public class MamaFuaService {
 
     public String registerMamaFua(MamaFua mamaFua) {
         mamaFuaDao.save(mamaFua);
-        return "mamaFua registered";
+        return null;
     }
 
     public MamaFua loginMamaFua(String email, String password) {
