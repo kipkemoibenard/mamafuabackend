@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("mamafua")
 @CrossOrigin(origins = "*")
@@ -21,6 +23,11 @@ public class MamaFuaController {
     @PostMapping("/register")
     public  String register(@RequestBody MamaFua mamaFua){
         return mamaFuaService.registerMamaFua(mamaFua);
+    }
+
+    @GetMapping("/getAllMamafua")
+    public List<MamaFua> getAllServiceProviders(){
+        return mamaFuaService.getAllMamafua();
     }
 
     @PostMapping("/login")

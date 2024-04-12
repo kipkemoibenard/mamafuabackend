@@ -3,6 +3,9 @@ package com.mamafua.mamafua_backend.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 //@Data should be used in place of all below except table
 @NoArgsConstructor
@@ -15,7 +18,7 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Column(name="Id")
+    @Column(name="Client_Id")
     int clntId;
     @Column(name="Name")
     String clntName;
@@ -31,4 +34,7 @@ public class Client {
     String email;
     @Column(name="Password")
     String password;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<RequestedServices>reqServices = new ArrayList<>();
 }
