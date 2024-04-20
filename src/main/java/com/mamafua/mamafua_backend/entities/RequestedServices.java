@@ -36,6 +36,9 @@ public class RequestedServices {
     @Column(name = "Request Person")
     private String reqPerson;
 
+    @Column(name = "Service Provider")
+    private String reqSvcProvider;
+
 //    @ManyToOne
 //    @JoinColumn(name = "Client_Id")
 //    private Client client;

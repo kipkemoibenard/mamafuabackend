@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RequestedSvcService {
@@ -47,4 +48,32 @@ public class RequestedSvcService {
     public List<RequestedServices>getAllRequestedServices(){
         return requestedServicesDAO.findAll();
     }
+
+//    public String updateServiceRequested(RequestedServices requestedServices) {
+//        requestedServicesDAO.save(requestedServices);
+//        return null;
+//    }
+public String updateServiceRequested(RequestedServices requestedServices, Long id) {
+    Optional<RequestedServices> optionalService = requestedServicesDAO.findById(id);
+
+    if (optionalService.isPresent()) {
+        RequestedServices existingService = optionalService.get();
+
+        // Update the existing service with new values
+//        existingService.setSvcName(requestedServices.getSvcName());
+//        existingService.setSvcCost(requestedServices.getSvcCost());
+//        existingService.setTotalCost(requestedServices.getTotalCost());
+//        existingService.setReqPerson(requestedServices.getReqPerson());
+        existingService.setRequestStatus(requestedServices.getRequestStatus());
+        existingService.setReqSvcProvider(requestedServices.getReqSvcProvider());
+
+        // Save the updated service
+        requestedServicesDAO.save(existingService);
+
+        return "Service with ID " + id + " updated successfully.";
+    } else {
+        // Handle case where service with given ID doesn't exist
+        return "Service with ID " + id + " not found.";
+    }
+}
 }

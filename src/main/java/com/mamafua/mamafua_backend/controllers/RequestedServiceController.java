@@ -64,4 +64,9 @@ public class RequestedServiceController {
         return requestedSvcService.getAllRequestedServices();
     }
 
+    @PutMapping("updateRequestedService/{id}")
+    public String updateReqService(@RequestBody RequestedServices requestedServices, @PathVariable Long id) {
+        return requestedSvcService.updateServiceRequested(requestedServices, id);
+    }
+
 }
