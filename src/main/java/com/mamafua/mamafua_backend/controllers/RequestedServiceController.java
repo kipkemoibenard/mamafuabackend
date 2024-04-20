@@ -20,37 +20,48 @@ import java.util.List;
 public class RequestedServiceController {
 
     private final RequestedSvcService requestedSvcService;
-    private final RequestedServicesDAO requestedServicesDAO;
 
-    private final ClientDao clientDao;
-
-    public RequestedServiceController(RequestedSvcService requestedSvcService, RequestedServicesDAO requestedServicesDAO, ClientDao clientDao){
+    public RequestedServiceController(RequestedSvcService requestedSvcService){
         this.requestedSvcService = requestedSvcService;
-        this.requestedServicesDAO = requestedServicesDAO;
-        this.clientDao = clientDao;
     }
 
-    @PostMapping("/save-req-service")
-    public ResponseEntity<Client> saveReqService(@RequestBody ClientRequestDto clientRequestDto) {
-        Client client = new Client();
-        client.setEmail(clientRequestDto.getReqPerson());
+//    @PostMapping("/save-req-service")
+//    public ResponseEntity<Client> saveReqService(@RequestBody ClientRequestDto clientRequestDto) {
+//        Client client = new Client();
+//        client.setEmail(clientRequestDto.getReqPerson());
+//
+//        List<RequestedServices> reqServices = new ArrayList<>();
+//        for (RequestServiceDto requestServiceDto : clientRequestDto.getRequests()) {
+//            RequestedServices requestedServices = new RequestedServices();
+//
+//            requestedServices.setReqName(requestServiceDto.getReqName());
+//            requestedServices.setReqCost(requestServiceDto.getReqCost());
+//            requestedServices.setRequestStatus(requestServiceDto.getRequestStatus());
+//            requestedServices.setClient(client);
+//
+//            reqServices.add(requestedServices);
+//        }
+//        client.setReqServices(reqServices);
+//
+//        clientDao.save(client);
+//
+//        return ResponseEntity.ok(client);
+//    }
 
-        List<RequestedServices> reqServices = new ArrayList<>();
-        for (RequestServiceDto requestServiceDto : clientRequestDto.getRequests()) {
-            RequestedServices requestedServices = new RequestedServices();
+    @PostMapping("/save")
+    public ResponseEntity<String> saveRequestedService(@RequestBody RequestServiceDto requestPayload) {
+        String response = requestedSvcService.saveRequestedService(requestPayload);
+        return ResponseEntity.ok(response);
+    }
 
-            requestedServices.setReqName(requestServiceDto.getReqName());
-            requestedServices.setReqCost(requestServiceDto.getReqCost());
-            requestedServices.setRequestStatus(requestServiceDto.getRequestStatus());
-            requestedServices.setClient(client);
+    @GetMapping("client/{email}")
+    public List<RequestedServices> getRequestedServicePerClient(@PathVariable String email){
+        return requestedSvcService.getRequestedServicePerClient(email);
+    }
 
-            reqServices.add(requestedServices);
-        }
-        client.setReqServices(reqServices);
-
-        clientDao.save(client);
-
-        return ResponseEntity.ok(client);
+    @GetMapping("allRequestedServices")
+    public List<RequestedServices> getAllRequestedServices(){
+        return requestedSvcService.getAllRequestedServices();
     }
 
 }

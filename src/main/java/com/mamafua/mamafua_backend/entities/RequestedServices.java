@@ -22,10 +22,10 @@ public class RequestedServices {
     int reqId;
 
     @Column(name = "Name")
-    private String reqName;
+    private String svcName;
 
     @Column(name = "Cost")
-    private String reqCost;
+    private String svcCost;
 
     @Column(name = "Total Cost")
     private String totalCost;
@@ -36,10 +36,19 @@ public class RequestedServices {
     @Column(name = "Request Person")
     private String reqPerson;
 
-    @ManyToOne
-    @JoinColumn(name = "Client_Id")
-    private Client client;
+//    @ManyToOne
+//    @JoinColumn(name = "Client_Id")
+//    private Client client;
+//
+////    @Column(insertable = false, updatable = false)
 
-//    @Column(insertable = false, updatable = false)
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "requested_services_id", referencedColumnName = "Id")
+//    private List<RequestedServices> requestedServices = new ArrayList<RequestedServices>();
+//
+//    // Method to add a requested service to the list
+//    public void addRequestedService(RequestedServices requestedService) {
+//        this.requestedServices.add(requestedService);
+//    }
 
 }

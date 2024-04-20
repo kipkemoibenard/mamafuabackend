@@ -1,22 +1,21 @@
 package com.mamafua.mamafua_backend.dtos;
 
 
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class RequestServiceDto {
-    private String reqName;
 
-    private String reqCost;
-
+    private List<RequestNameAndCostDto> requests;
     private String totalCost;
-
+    private String reqPerson;
     private String requestStatus;
 }

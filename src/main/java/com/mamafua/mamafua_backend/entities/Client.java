@@ -35,6 +35,6 @@ public class Client {
     @Column(name="Password")
     String password;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<RequestedServices>reqServices = new ArrayList<>();
+//    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<RequestedServices>reqServices = new ArrayList<>();
 }
