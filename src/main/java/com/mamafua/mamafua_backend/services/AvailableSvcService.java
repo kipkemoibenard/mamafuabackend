@@ -6,6 +6,7 @@ import com.mamafua.mamafua_backend.repo.AvailableServicesDao;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AvailableSvcService {
@@ -22,5 +23,30 @@ public class AvailableSvcService {
 
     public List<AvailableService>getAllServices(){
         return availableServicesDao.findAll();
+    }
+
+    public String updateAvailableService(AvailableService availableService, int id){
+        Optional<AvailableService> serviceToUpdate = availableServicesDao.findById(id);
+        if(serviceToUpdate.isPresent()) {
+            AvailableService aService = serviceToUpdate.get();
+
+            aService.setSvcName(availableService.getSvcName());
+            aService.setSvcCost(availableService.getSvcCost());
+            availableServicesDao.save(aService);
+            return null;
+        }
+        else {
+            return "Service with ID " + id + " not found";
+        }
+    }
+
+    public String deleteAvailableServive(int id){
+        Optional<AvailableService> serviceToDelete = availableServicesDao.findById(id);
+        if(serviceToDelete.isPresent()) {
+            availableServicesDao.deleteById(id);
+            return null;
+        } else {
+            return "Service with ID " + id + " not found";
+        }
     }
 }

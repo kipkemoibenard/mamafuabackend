@@ -27,4 +27,14 @@ public class AvailableServicesController {
         return availableSvcService.getAllServices();
     }
 
+    @PutMapping("updateAvailableService/{id}")
+    public String updateService(@RequestBody AvailableService availableService, @PathVariable int id){
+        return availableSvcService.updateAvailableService(availableService, id);
+    }
+
+    @DeleteMapping("deleteAvailableService/{id}")
+    public String deleteService(@PathVariable int id){
+        return availableSvcService.deleteAvailableServive(id);
+    }
+
 }
