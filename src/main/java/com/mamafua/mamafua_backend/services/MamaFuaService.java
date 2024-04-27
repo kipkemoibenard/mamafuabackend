@@ -6,6 +6,7 @@ import com.mamafua.mamafua_backend.repo.MamaFuaDao;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MamaFuaService {
@@ -15,9 +16,23 @@ public class MamaFuaService {
         this.mamaFuaDao = mamaFuaDao;
     }
 
+//    public String registerMamaFua(MamaFua mamaFua) {
+//        mamaFuaDao.save(mamaFua);
+//        return null;
+//    }
+
     public String registerMamaFua(MamaFua mamaFua) {
-        mamaFuaDao.save(mamaFua);
-        return null;
+        // Check if email already exists
+        Optional<MamaFua> existingMamaFua = mamaFuaDao.findByEmail(mamaFua.getEmail());
+
+        if (existingMamaFua.isPresent()) {
+            // Email already exists, display message
+            return "Email already registered!";
+        } else {
+            // Email doesn't exist, proceed with registration
+            mamaFuaDao.save(mamaFua);
+            return "Registration successful!";
+        }
     }
 
     public List<MamaFua>getAllMamafua(){

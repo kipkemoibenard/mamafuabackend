@@ -21,8 +21,7 @@ public class ClientController {
 
     @PostMapping("register")
     public String registerClient(@RequestBody Client client) {
-        clientService.registerClient(client);
-        return null;
+        return clientService.registerClient(client);
     }
 
     @GetMapping("/allClients")

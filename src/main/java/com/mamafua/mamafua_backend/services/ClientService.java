@@ -1,10 +1,12 @@
 package com.mamafua.mamafua_backend.services;
 
 import com.mamafua.mamafua_backend.entities.Client;
+import com.mamafua.mamafua_backend.entities.MamaFua;
 import com.mamafua.mamafua_backend.repo.ClientDao;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClientService {
@@ -15,8 +17,18 @@ public class ClientService {
     }
 
     public String registerClient(Client client) {
-        clientDao.save(client);
-        return  "client registered";
+//        clientDao.save(client);
+//        return  "client registered";
+        Optional<Client> existingClient = clientDao.findByEmail(client.getEmail());
+
+        if (existingClient.isPresent()) {
+            // Email already exists, display message
+            return "Email already registered!";
+        } else {
+            // Email doesn't exist, proceed with registration
+            clientDao.save(client);
+            return "Registration successful!";
+        }
     }
 
     public List<Client>getAllClients(){
