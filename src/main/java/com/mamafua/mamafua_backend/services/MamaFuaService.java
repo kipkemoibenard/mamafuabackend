@@ -53,7 +53,7 @@ public class MamaFuaService {
             existingMamaFua.setEmail(mamaFua.getEmail());
 
             mamaFuaDao.save(existingMamaFua);
-            return "Update successful!";
+            return null;
         } else {
             return "Client with not found.";
         }
