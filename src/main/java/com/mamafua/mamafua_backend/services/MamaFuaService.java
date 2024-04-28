@@ -42,4 +42,30 @@ public class MamaFuaService {
     public MamaFua loginMamaFua(String email, String password) {
         return mamaFuaDao.findByEmailAndPassword(email, password);
     }
+
+    public String updateMamaFua(MamaFua mamaFua, int id) {
+        Optional<MamaFua> mamaFua1 = mamaFuaDao.findById(id);
+        if (mamaFua1.isPresent()) {
+            MamaFua existingMamaFua = mamaFuaDao.findById(id).get();
+
+            existingMamaFua.setMamafuaName(mamaFua.getMamafuaName());
+            existingMamaFua.setCounty(mamaFua.getCounty());
+            existingMamaFua.setEmail(mamaFua.getEmail());
+
+            mamaFuaDao.save(existingMamaFua);
+            return "Update successful!";
+        } else {
+            return "Client with not found.";
+        }
+    }
+
+    public String deleteAvailableServive(int id) {
+        Optional<MamaFua> mamafuaAvailable = mamaFuaDao.findById(id);
+        if (mamafuaAvailable.isPresent()) {
+            mamaFuaDao.deleteById(id);
+            return  null;
+        } else {
+            return "Service provider with ID " + id + " not found";
+        }
+    }
 }

@@ -25,6 +25,11 @@ public class MamaFuaController {
         return mamaFuaService.registerMamaFua(mamaFua);
     }
 
+    @PutMapping("/register/{id}")
+    public  String register(@RequestBody MamaFua mamaFua,  @PathVariable int id){
+        return mamaFuaService.updateMamaFua(mamaFua, id);
+    }
+
     @GetMapping("/getAllMamafua")
     public List<MamaFua> getAllServiceProviders(){
         return mamaFuaService.getAllMamafua();
@@ -39,5 +44,10 @@ public class MamaFuaController {
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
         }
+    }
+
+    @DeleteMapping("deleteMamaFua/{id}")
+    public String deleteService(@PathVariable int id){
+        return mamaFuaService.deleteAvailableServive(id);
     }
 }
