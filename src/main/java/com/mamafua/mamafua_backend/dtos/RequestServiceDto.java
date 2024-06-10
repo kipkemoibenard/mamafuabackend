@@ -18,4 +18,9 @@ public class RequestServiceDto {
     private String totalCost;
     private String reqPerson;
     private String requestStatus;
+    private String county;
+    private String area;
+    private String plot;
+    private String house;
+    private String phone;
 }

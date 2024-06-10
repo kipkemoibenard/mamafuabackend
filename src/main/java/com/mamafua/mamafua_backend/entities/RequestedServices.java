@@ -39,6 +39,21 @@ public class RequestedServices {
     @Column(name = "Service Provider")
     private String reqSvcProvider;
 
+    @Column(name = "County")
+    private String county;
+
+    @Column(name = "Area")
+    private String area;
+
+    @Column(name = "Plot")
+    private String plot;
+
+    @Column(name = "House No")
+    private String house;
+
+    @Column(name = "Phone No")
+    private String phone;
+
 //    @ManyToOne
 //    @JoinColumn(name = "Client_Id")
 //    private Client client;

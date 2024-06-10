@@ -30,6 +30,8 @@ public class Client {
     String clntResidentialPlot;
     @Column(name="House Number")
     String clntHouseNo;
+    @Column(name="Phone no")
+    String phone;
     @Column(name="Email")
     String email;
     @Column(name="Password")

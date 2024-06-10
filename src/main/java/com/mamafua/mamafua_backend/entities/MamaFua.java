@@ -21,6 +21,8 @@ public class MamaFua {
     String mamafuaName;
     @Column(name="County")
     String county;
+    @Column(name="Phone no")
+    String phone;
     @Column(name="Email")
     String email;
     @Column(name="Password")

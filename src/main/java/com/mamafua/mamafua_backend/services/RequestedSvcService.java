@@ -35,6 +35,11 @@ public class RequestedSvcService {
             requestedServices.setTotalCost(requestServiceDto.getTotalCost());
             requestedServices.setRequestStatus(requestServiceDto.getRequestStatus());
             requestedServices.setReqPerson(requestServiceDto.getReqPerson());
+            requestedServices.setCounty(requestServiceDto.getCounty());
+            requestedServices.setArea(requestServiceDto.getArea());
+            requestedServices.setPlot(requestServiceDto.getPlot());
+            requestedServices.setHouse(requestServiceDto.getHouse());
+            requestedServices.setPhone(requestServiceDto.getPhone());
             requestedServicesDAO.save(requestedServices);
         }
         return null;
